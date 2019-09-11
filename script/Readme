@@ -1,0 +1,20 @@
+This prototype contains the scirpts that can complete the data training, data test, nsight log collection, format data,
+get prediciton, and modify benchmark at runtime. The details are in the below:
+
+1. Offline Training Processing (in workflow_1.sh): 
+    Training processing need the training dataset and model to complete. 
+    1.1 To get the training data, you need to run nsight to fetch runtime logs, then use the script "" to format the original logs into dataset (csv format)
+    1.2 Use the csv dataset into Weka to format as trainig dataset in .arff file. Then use Weka to normalize it.
+    1.3 Select different algorithm in Weka classify, use 10-fold cross validation to evalution with performance, then you can get the trained model
+    1.4 In Weka you can right click the model then save it to the local --> that's the offline trained model
+
+2. Online Runtime Data Collection (in workflow_2.sh):
+    2.1 You can use the script "" to run nsight command line to collect the runtime logs from new benchmarks/applications (note that this script will automatically format, normalize, and save the new data into test.arff file (the test dataset))
+    2.2 In some cases, if it takes more than several minutes in the nsight to fetch data, you can interrupt it
+
+3. Online Inference (in workflow_3.sh):
+    3.1 The steps of implementing online reference are in the script "find_advice_for_benchmark.py ", in which it can automaticlly run the test dataset with offline trained model to get the prediction
+    3.2 It will automatically modify the benchmark/applicaiton code with the new advice and then make the new benchmark/applications.
+        After that, you can use the new output to instead former benchmark/application.
+        
+Note: all benchmarks please refer to the folder in Rodinia_3.1.
