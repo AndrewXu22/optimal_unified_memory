@@ -10,7 +10,7 @@ cd /Users/xu20/Documents/LLNL_work/prototype_llnl/output_to_arff
 #(d). specify the path where to store the collected metrics
 # More details: 
 #   (a). find the proper path to "nv-nsight-cu-cli"
-#   (b). --metrics collect the features from the related feature list file 207.txt, so need to put the 207.txt in the directory
+#   (b). --metrics collect the features from the related feature list file 207.txt, so need to put the 207.txt in the directory. Features in 207.txt are from the low level features, you can use other level features by modify the command details
 #   (c). --csv store the collect logs into csv file
 #   (d). ./benchmarks/bfs/bfs_adapt_00 ./benchmarks/data/bfs/graph65536.txt use the benchmark with input file
 #   (e). >> ./logs/nsight_bfs_UM  store the logs with csv format into "nsight_bfs_UM" file
