@@ -112,3 +112,109 @@ Data,label,InputData,BeginAddr,EndAddr,CPUPageFault,GPUPagePault,HtoD,DtoH,Remot
 h_normals,001,0.2M,0x200060000000,0x200060aa7000,65,578,10944.0,0.0,0.0
 h_normals,002,0.2M,0x200060000000,0x200060aa7000,171,629,10944.0,0.0,0.0
 ```
+
+# Step 2. Merge kernel and object level features 
+
+The Merge script: 
+* ./prototype/merger.py
+
+You need to make sure 
+```
+df1 = pd.read_csv("./kernel-level-measurement/dataset.csv")
+df2 = pd.read_csv("./data-level-measurement/GPUTrace.csv")
+```
+e.g. run it  under ~/optimization_unified_memory/rodinia_3.1/cuda/cfd
+python3 $PATH_TO_PROJECT/scripts/labeler-v2.py 
+
+Output of merged data:
+* ./rodinia_3.1/cuda/cfd/mergedDataSet.csv
+
+A similar file for aws volta machine: mergedDataSet-ip-128-115-246-7.csv 
+
+Command to run merger:
+* python3 $PATH_TO_PROJET/optimization_unified_memory/prototype/merger.py
+
+
+Merged_feature = Kernel_vector X Object_vector
+
+
+M (K1-A-B) = [ < f(K1) + f(A) > // feature vector length (n+m)
+                       <  f(k1) + f(B)> ]
+
+Merged Feature vector for A:: <input size, cycles, duration, mem%, cpu page faults, gpu page faults, H2D data movement count, D2H data movement count, advise>, for example:
+```
+< 1, 8991, 3520, 9.27, 9982, 334, 42, 3, 0>   
+< 1, 8991, 3520, 9.27, 3434, 78, 83, 123> 
+< 2, 8991, 3520, 9.27, 9982, 334, 42, 3>   
+< 2, 8991, 3520, 9.27, 3434, 78, 83, 123> 
+```
+
+Note: profilers collect object level metrics for the whole program, the multiplication of kernel vector and object vector may result in some records which do not correspond to actual use of objects within the kernels. We may need to ignore some records. 
+
+
+Notes for the columns
+* InputData:  the data size for a benchmark:    this varies a lot from one program to another
+* Data: the variable name
+* DataID: always values of 0, 1,2 , the top three most important arrays
+* 28: Not Eligible, this can be ignored
+* 31: One or More Eligible , this can be ignored.
+* 57: variant XXX three digit value to indicate which variant
+
+# Step 3. Label the training data
+
+Generate kernel-based run for all variants:
+* ./rodinia_3.1/cuda/cfd/run_variants.sh
+
+./rodinia_3.1/cuda/cfd$ nohup ./run_variants-v2.sh &
+
+Outputi sample:
+* ./rodinia_3.1/cuda/cfd/ip-128-115-246-7-kernel-level-measurement/variants 
+There should be 7*7*7*3 = 1029 log files :up to 3 objects, each 7 variants, 3 input data sizes for cfd
+
+Post-process script:
+*./scripts/extractData.py
+
+Command: 
+* python3 $PATH_TO_PROJECT/scripts/extractData.py
+
+Outputi Summary in csv: 
+* ./rodinia_3.1/cuda/cfd/kernel-level-measurement/data-level-measurement/GPUTrace.csv
+
+Best-performed data group by kernel and inputdata:
+https://gitlab.com/DATA-PLACEMENT-LDRD/optimization_unified_memory/-/blob/master/rodinia_3.1/cuda/cfd/kernel-level-measurement/lassen-log/kernel-data-best.csv
+
+
+Applying Labels:
+Script:
+* ./scripts/labeler.py
+Command:
+```
+cd $PATH_TO_PROJET/optimization_unified_memory/rodinia_3.1/cuda/cfd
+Python3 $PATH_TO_PROJET/prototypes/labeler.py
+```
+
+Output labelled data:
+* ./rodinia_3.1/cuda/cfd/labelledData.csv
+
+Add label into the merged feature vector
+* <Kernel-feature, data-object-feature, label>
+
+// How to label the data with object level adaptation ： assuming 7 options for data placement
+best execution of variants: 
+* SC paper:  object variants: each object within a kernel, different placement  policies 
+* Once we find the best performing one of the 49 variants.: we use the labels for each data object . 
+
+Currently the kernel-level results (using minimum nvprof option) is collected at 
+./rodinia_3.1/cuda/cfd/data-level-measurement/dataset.csv
+
+We can sort the csv file to find the best execution time for each kernel.
+  
+cuda_compute_flux,0.2M,0,000,66.45,402.5463,6000,0.067091,0.058240,0.070912
+
+Labeled_Vector =  M_Vector + Labels
+
+Key components: Kernel, input, array object, features ,label
+
+			< 8991, 3520, 9.27, 9982, 334, 42, 3, policy>   
+			< 8991, 3520, 9.27, 3434, 78, 83, 123, policy> 
+
