@@ -11,10 +11,11 @@ Overview of major steps
 
 # Step 1. Collect Baseline Metrics for Kernel and Object Level Features
 
+
+## How to collect kernel level metrics (baseline experiment)
+
 Kernel level feature vector: f(K1) = < f1, f2… fn,> (K1)  
 * e.g.  <input size, cycles (8991), duration (3520, nsecond), mem % (9.27, %)>
-
-How to collect kernel level metrics (baseline experiment)
 * using nsight run default, discrete memory API version of a program  (select this for now)
 
 Build all necessary code variants for the program
@@ -46,6 +47,7 @@ Raw Data samples are stored within
 ./rodinia_3.1/cuda/cfd/kernel-level-measurement
 
 three log files for three different data sizes of CFD, note that the data size portion file names must be consistent for all log files. Later python scripts will rely on them to merge and label data. 
+
 * nsight_cfd_097K.log  
 * nsight_cfd_193K.log  
 * nsight_cfd_missile0.2M.log
@@ -71,4 +73,42 @@ Example output from nsight_cfd_unRM_097k.log:
 Output dataset at:
 * ./rodinia_3.1/cuda/cfd/kernel-level-measurement/dataset.csv
 
+## Now, collect data object level features: 
 
+Assuming two objects, we should have the following feature vectors: 
+Data object’s feature vector: f(A) = < f1, f2,...fm> (A) // e.g. <size, cpu pages faults (9982), gpu page faults(334), H2D data movement count(42, MB), D2H data movement count (3, MB) >
+How to collect object level metric (baseline experiment):  using nvprof run unified memory default version of a program
+Data object’s feature vector:  f(B) = < f1, f2,...fm> (B) // e.g. <cpu pages faults (3434), gpu page faults(78), H2D data movement count(83, MB), D2H data movement count (123, MB) >
+
+Kernel-feature = <cycles (8991), duration (3520, nsecond), mem % (9.27, %)>
+
+Object-feature = <cpu pages faults (9982), gpu page faults(334), H2D data movement count(42, MB), D2H data movement count (3, MB) >
+
+Scripts to collect data object level features. :
+  ./rodinia_3.1/cuda/cfd/baseline-data-features.sh
+
+Note -v2.sh may not work properly. The log files have a special name convention for different data sizes in the original script.  Changing name convention needs the change of python scripts!! 
+
+The accepted CFD’s log files must consistly use _097K.log, _193K.log, and _missile0.2M.log for all experiments.
+
+Object-level feature raw data: samples are stored within ./rodinia_3.1/cuda/cfd/data-level-measurement
+
+Post-process script:
+./scripts/extractGPUTrace.py
+
+Command to run post-process:
+```
+> cd data-level-measurement
+> python3 $PATH_TO_PROJET/scripts/extractGPUTrace.py
+```
+
+Post-processed data; ./rodinia_3.1/cuda/cfd/data-level-measurement/GPUTrace.csv
+
+Sample content of the post-processed data in GPUTrace.csv :
+```
+array name, variants, input size, 
+
+Data,label,InputData,BeginAddr,EndAddr,CPUPageFault,GPUPagePault,HtoD,DtoH,RemoteMap
+h_normals,001,0.2M,0x200060000000,0x200060aa7000,65,578,10944.0,0.0,0.0
+h_normals,002,0.2M,0x200060000000,0x200060aa7000,171,629,10944.0,0.0,0.0
+```
