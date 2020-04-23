@@ -239,3 +239,39 @@ Instructions:
 * Run with several tree models in Weka to test: e.g., Random Tree (66% train and 33% test): 
     Note that the results are not very good since only sample data is used. You should get more accurate models with full datasets
 
+
+More info. Train a model with the training dataset
+
+Option 1: use the Weka software interface to do the training work
+*  Step (1). Open Weka, click "Explorer", go to the new Explorer interface
+* Step (2). Click "Open file", then select the training set in .arff format, then it will display the details of dataset with attributes and class, etc.
+* Step (3). Click "Classify" button in the upside, then click "choose", where allows you to select the model you want to use
+           e.g., choose -> trees -> RandomForest. Note here you can click Random Forest to modify more details about the model like number of trees.
+* Step (4). In "Test options", click "Cross-validation", you can choose Folds as 10
+* Step (5). Click "Start" button, it will run the training process
+* Step (6). After training done, the results will be displayed in Classifier output.In the left downside, you can see a new ino shows the time with the model name:
+           e.g., 13:23:45 - trees.RandomForest, right click this one, then select "save model", you can choose the directory you want to save and name it. 
+           Then the training model is saved.
+* Step (7). To use the trained model, in this same place, you can right click the blank spalce, then select "load model", you can load the model you just saved. 
+#           That's just how to do the test (prediction) work when you want to use the training model. 
+
+
+Options 2: use command line to do the training work
+here is an example about using models with multiple classifiers, please use your 
+ own and modify more details to use other model
+ here is the official docu: https://www.cs.waikato.ac.nz/~remco/weka_bn/node13.html
+ https://weka.sourceforge.io/doc.dev/weka/classifiers/meta/FilteredClassifier.html
+```
+# -t : training file
+# -T : test file
+# -W : classifier_name
+# -F filter_specification, followed by filter options
+java -classpath weka.jar weka.classifiers.meta.FilteredClassifier \
+  -t ~/weka-3-7-9/data/ReutersCorn-train.arff \
+  -T ~/weka-3-7-9/data/ReutersCorn-test.arff \
+ -F "weka.filters.MultiFilter \
+     -F weka.filters.unsupervised.attribute.StringToWordVector \
+     -F weka.filters.unsupervised.attribute.Standardize" \
+ -W weka.classifiers.trees.RandomForest -- -I 100 \
+```
+
