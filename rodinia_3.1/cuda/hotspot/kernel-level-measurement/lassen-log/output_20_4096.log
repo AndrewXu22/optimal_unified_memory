@@ -1,0 +1,28 @@
+==101698== NVPROF is profiling process 101698, command: ./lassen-executable/hotspot_20 4096 2 2 ../../data/hotspot/temp_4096 ../../data/hotspot/power_4096 output-adapt.out
+==101698== Profiling application: ./lassen-executable/hotspot_20 4096 2 2 ../../data/hotspot/temp_4096 ../../data/hotspot/power_4096 output-adapt.out
+==101698== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+                        %        ms                  ms        ms        ms
+ GPU activities:    98.19  295.6673         1  295.6673  295.6673  295.6673  calculate_temp(int, float*, float*, float*, int, int, int, int, float, float, float, float, float, float)
+                     1.81  5.435776         1  5.435776  5.435776  5.435776  [CUDA memcpy HtoD]
+      API calls:    91.07  270.5012         2  135.2506  0.204186  270.2970  cudaMallocManaged
+                     1.94  5.755908         1  5.755908  5.755908  5.755908  cudaMemcpy
+                     1.90  5.646346       388  0.014552  2.74e-04  0.587608  cuDeviceGetAttribute
+                     1.88  5.593723         4  1.398430  4.47e-03  2.350142  cudaFree
+                     1.56  4.636704         4  1.159176  1.149511  1.175136  cuDeviceTotalMem
+                     0.81  2.408627         2  1.204313  3.98e-03  2.404650  cudaMemAdvise
+                     0.62  1.845078         1  1.845078  1.845078  1.845078  cudaMalloc
+                     0.16  0.467973         4  0.116993  0.114527  0.118750  cuDeviceGetName
+                     0.05  0.158496         1  0.158496  0.158496  0.158496  cudaLaunchKernel
+                     0.01  0.015881         4  3.97e-03  1.51e-03  9.04e-03  cuDeviceGetPCIBusId
+                     0.00  3.75e-03         8  4.69e-04  3.50e-04  7.31e-04  cuDeviceGet
+                     0.00  1.79e-03         3  5.95e-04  5.00e-04  7.81e-04  cuDeviceGetCount
+                     0.00  1.63e-03         4  4.07e-04  3.36e-04  4.51e-04  cuDeviceGetUuid
+
+==101698== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+     267  245.45KB  64.000KB  960.00KB  64.00000MB    1.616480ms  Host To Device
+     320  204.80KB  64.000KB  960.00KB  64.00000MB    1.737600ms  Device To Host
+    2313         -         -         -           -  291.383072ms  Gpu page fault groups
+Total CPU Page faults: 384

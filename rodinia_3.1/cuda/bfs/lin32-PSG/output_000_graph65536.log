@@ -1,0 +1,31 @@
+==9958== NVPROF is profiling process 9958, command: ./bfs_000 ../../../data/bfs/graph65536.txt
+==9958== Profiling application: ./bfs_000 ../../../data/bfs/graph65536.txt
+==9958== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+                        %        ms                  ms        ms        ms
+ GPU activities:    61.81  2.045470        10  0.204547  2.30e-03  0.952991  Kernel(Node*, int*, bool*, bool*, bool*, int*, int)
+                    38.19  1.263966        10  0.126396  1.57e-03  0.647071  Kernel2(bool*, bool*, bool*, bool*, int)
+      API calls:    95.66  265.7144         7  37.95920  9.46e-03  265.5863  cudaMallocManaged
+                     1.65  4.585262         4  1.146315  1.134207  1.175223  cuDeviceTotalMem
+                     1.23  3.410153       388  8.79e-03  1.09e-04  0.364675  cuDeviceGetAttribute
+                     1.18  3.284405        10  0.328440  5.96e-03  1.015236  cudaDeviceSynchronize
+                     0.10  0.284332         4  0.071083  0.067594  0.073496  cuDeviceGetName
+                     0.09  0.241925         6  0.040320  9.41e-03  0.134633  cudaFree
+                     0.08  0.235244        20  0.011762  5.59e-03  0.048979  cudaLaunchKernel
+                     0.00  0.010545         6  1.76e-03  4.44e-04  7.83e-03  cudaMemAdvise
+                     0.00  9.22e-03         4  2.30e-03  1.19e-03  5.40e-03  cuDeviceGetPCIBusId
+                     0.00  2.47e-03         8  3.09e-04  1.58e-04  8.86e-04  cuDeviceGet
+                     0.00  1.34e-03         3  4.46e-04  1.51e-04  6.71e-04  cuDeviceGetCount
+                     0.00  7.65e-04         4  1.91e-04  1.60e-04  2.41e-04  cuDeviceGetUuid
+
+==9958== Unified Memory profiling result:
+Device "Tesla V100-PCIE-32GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+     171  27.813KB  4.0000KB  524.00KB  4.644531MB    0.823232ms  Host To Device
+      25  80.159KB  4.0000KB  384.00KB  1.957031MB    0.208256ms  Device To Host
+      31         -         -         -           -    3.204320ms  Gpu page fault groups
+       1         -         -         -           -    0.542911ms  Page throttles
+      17  4.0000KB  4.0000KB  4.0000KB  68.00000KB           -  Memory thrashes
+Total CPU Page faults: 26
+Total CPU thrashes: 17
+Total CPU throttles: 1

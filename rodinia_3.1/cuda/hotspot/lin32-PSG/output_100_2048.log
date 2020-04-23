@@ -1,0 +1,24 @@
+==49223== NVPROF is profiling process 49223, command: ./hotspot_100 2048 2 2 ../../../data/hotspot/temp_2048 ../../../data/hotspot/power_2048 output-adapt.out
+==49223== Profiling application: ./hotspot_100 2048 2 2 ../../../data/hotspot/temp_2048 ../../../data/hotspot/power_2048 output-adapt.out
+==49223== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+                        %        ms                  ms        ms        ms
+ GPU activities:   100.00  14.07268         1  14.07268  14.07268  14.07268  calculate_temp(int, float*, float*, float*, int, int, int, int, float, float, float, float, float, float)
+      API calls:    96.64  241.8107         3  80.60355  0.023954  241.5478  cudaMallocManaged
+                     1.98  4.960337         4  1.240084  3.77e-03  1.836419  cudaFree
+                     0.89  2.232578         2  1.116289  1.106388  1.126190  cuDeviceTotalMem
+                     0.39  0.980794       194  5.06e-03  1.09e-04  0.200567  cuDeviceGetAttribute
+                     0.05  0.137328         1  0.137328  0.137328  0.137328  cudaLaunchKernel
+                     0.03  0.082533         2  0.041266  0.038956  0.043577  cuDeviceGetName
+                     0.00  6.35e-03         2  3.18e-03  1.55e-03  4.80e-03  cuDeviceGetPCIBusId
+                     0.00  1.52e-03         4  3.79e-04  1.65e-04  7.94e-04  cuDeviceGet
+                     0.00  1.29e-03         3  4.28e-04  1.21e-04  7.26e-04  cuDeviceGetCount
+                     0.00  4.35e-04         2  2.17e-04  1.65e-04  2.70e-04  cuDeviceGetUuid
+
+==49223== Unified Memory profiling result:
+Device "Tesla V100-PCIE-32GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+     965  33.956KB  4.0000KB  0.9961MB  32.00000MB    4.478848ms  Host To Device
+      96  170.67KB  4.0000KB  0.9961MB  16.00000MB    1.393600ms  Device To Host
+      71         -         -         -           -   14.388128ms  Gpu page fault groups
+Total CPU Page faults: 144

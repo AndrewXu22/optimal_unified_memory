@@ -1,0 +1,40 @@
+==45512== NVPROF is profiling process 45512, command: ./cfd_1534 ../../../data/cfd/missile.domn.0.2M
+==45512== Profiling application: ./cfd_1534 ../../../data/cfd/missile.domn.0.2M
+==45512== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+                        %        ms                  ms        ms        ms
+ GPU activities:    97.34  7.33e+03      6000  1.221374  1.206520  8.579949  cuda_compute_flux(int, int*, float*, float*, float*)
+                     1.85  139.6459      6000  0.023274  0.021088  0.027040  cuda_time_step(int, int, float*, float*, float*, float*)
+                     0.41  30.93549      2000  0.015467  0.014656  0.022240  [CUDA memcpy DtoD]
+                     0.36  27.13428      2000  0.013567  0.011520  0.745947  cuda_compute_step_factor(int, float*, float*, float*)
+                     0.03  2.485009         3  0.828336  0.753243  0.920283  cuda_initialize_variables(int, float*)
+                     0.00  7.46e-03         5  1.49e-03  1.41e-03  1.82e-03  [CUDA memcpy HtoD]
+                     0.00  2.08e-03         1  2.08e-03  2.08e-03  2.08e-03  [CUDA memset]
+      API calls:    94.69  7.47e+03      2000  3.737342  0.068438  11.85318  cudaMemcpy
+                     3.79  298.8195         5  59.76390  5.83e-03  298.7868  cudaMemcpyToSymbol
+                     0.99  78.51296     14003  5.61e-03  4.21e-03  0.448329  cudaLaunchKernel
+                     0.26  20.85345         7  2.979063  0.014881  20.46460  cudaMallocManaged
+                     0.06  4.586543         4  1.146635  1.123538  1.200332  cuDeviceTotalMem
+                     0.05  3.715718         2  1.857859  8.02e-03  3.707695  cudaThreadSynchronize
+                     0.04  3.485291     28003  1.24e-04  8.50e-05  0.017611  cudaGetLastError
+                     0.04  3.418740       388  8.81e-03  1.07e-04  0.403280  cuDeviceGetAttribute
+                     0.03  2.727809         1  2.727809  2.727809  2.727809  cudaMemset
+                     0.03  2.182787        10  0.218278  4.06e-04  1.031992  cudaFree
+                     0.01  0.831406         1  0.831406  0.831406  0.831406  cudaGetDeviceProperties
+                     0.00  0.283038         4  0.070759  0.069550  0.072402  cuDeviceGetName
+                     0.00  0.025302         3  8.43e-03  2.65e-03  0.016945  cudaMemAdvise
+                     0.00  8.80e-03         4  2.20e-03  1.15e-03  4.96e-03  cuDeviceGetPCIBusId
+                     0.00  7.07e-03         1  7.07e-03  7.07e-03  7.07e-03  cudaSetDevice
+                     0.00  2.16e-03         8  2.69e-04  1.29e-04  5.02e-04  cuDeviceGet
+                     0.00  1.89e-03         1  1.89e-03  1.89e-03  1.89e-03  cudaGetDevice
+                     0.00  1.30e-03         3  4.32e-04  1.34e-04  6.91e-04  cuDeviceGetCount
+                     0.00  8.80e-04         4  2.20e-04  1.94e-04  2.68e-04  cuDeviceGetUuid
+
+==45512== Unified Memory profiling result:
+Device "Tesla V100-PCIE-32GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+      20  45.600KB  4.0000KB  296.00KB  912.0000KB    0.127136ms  Host To Device
+      77         -         -         -           -   13.399744ms  Gpu page fault groups
+    2036  7.1426KB  4.0000KB  564.00KB  14.20313MB           -  Remote mapping from device
+Total CPU Page faults: 31
+Total remote mappings to CPU: 2036

@@ -1,0 +1,30 @@
+==87472== NVPROF is profiling process 87472, command: ./lassen-executable/hotspot_40 128 2 2 ../../data/hotspot/temp_128 ../../data/hotspot/power_128 output-adapt.out
+==87472== Profiling application: ./lassen-executable/hotspot_40 128 2 2 ../../data/hotspot/temp_128 ../../data/hotspot/power_128 output-adapt.out
+==87472== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+                        %        ms                  ms        ms        ms
+ GPU activities:    96.69  0.256063         1  0.256063  0.256063  0.256063  calculate_temp(int, float*, float*, float*, int, int, int, int, float, float, float, float, float, float)
+                     3.31  8.77e-03         1  8.77e-03  8.77e-03  8.77e-03  [CUDA memcpy HtoD]
+      API calls:    95.54  271.5632         2  135.7816  0.016551  271.5467  cudaMallocManaged
+                     2.06  5.865983       388  0.015118  2.87e-04  0.615021  cuDeviceGetAttribute
+                     1.73  4.909087         4  1.227271  1.215159  1.244900  cuDeviceTotalMem
+                     0.20  0.558982         4  0.139745  1.75e-03  0.357497  cudaFree
+                     0.20  0.556103         1  0.556103  0.556103  0.556103  cudaMalloc
+                     0.17  0.482629         4  0.120657  0.117595  0.122572  cuDeviceGetName
+                     0.04  0.106377         2  0.053188  0.015927  0.090450  cudaMemAdvise
+                     0.04  0.106107         1  0.106107  0.106107  0.106107  cudaLaunchKernel
+                     0.03  0.073201         1  0.073201  0.073201  0.073201  cudaMemcpy
+                     0.00  0.011080         4  2.77e-03  1.44e-03  5.95e-03  cuDeviceGetPCIBusId
+                     0.00  4.09e-03         8  5.10e-04  3.81e-04  7.50e-04  cuDeviceGet
+                     0.00  1.91e-03         3  6.37e-04  5.57e-04  7.96e-04  cuDeviceGetCount
+                     0.00  1.80e-03         4  4.50e-04  4.18e-04  4.84e-04  cuDeviceGetUuid
+
+==87472== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+       1  64.000KB  64.000KB  64.000KB  64.00000KB  4.6720e-03ms  Host To Device
+       1  64.000KB  64.000KB  64.000KB  64.00000KB  3.1040e-03ms  Device To Host
+       1         -         -         -           -    0.243200ms  Gpu page fault groups
+       2  64.000KB  64.000KB  64.000KB  128.0000KB           -  Remote mapping from device
+Total CPU Page faults: 2
+Total remote mappings to CPU: 2

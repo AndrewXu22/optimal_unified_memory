@@ -1,0 +1,25 @@
+==89636== NVPROF is profiling process 89636, command: ./lassen-executable/hotspot_21 512 2 2 ../../data/hotspot/temp_512 ../../data/hotspot/power_512 output-adapt.out
+==89636== Profiling application: ./lassen-executable/hotspot_21 512 2 2 ../../data/hotspot/temp_512 ../../data/hotspot/power_512 output-adapt.out
+==89636== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+                        %        ms                  ms        ms        ms
+ GPU activities:   100.00  6.206690         1  6.206690  6.206690  6.206690  calculate_temp(int, float*, float*, float*, int, int, int, int, float, float, float, float, float, float)
+      API calls:    95.61  270.1732         3  90.05773  0.010402  270.1264  cudaMallocManaged
+                     2.14  6.056601       388  0.015609  3.03e-04  0.629229  cuDeviceGetAttribute
+                     1.82  5.155952         4  1.288988  1.274522  1.307507  cuDeviceTotalMem
+                     0.18  0.509459         4  0.127364  0.123367  0.132583  cuDeviceGetName
+                     0.16  0.443595         4  0.110898  2.27e-03  0.227714  cudaFree
+                     0.04  0.108989         1  0.108989  0.108989  0.108989  cudaLaunchKernel
+                     0.04  0.100649         2  0.050324  5.42e-03  0.095231  cudaMemAdvise
+                     0.01  0.014566         4  3.64e-03  1.59e-03  8.45e-03  cuDeviceGetPCIBusId
+                     0.00  4.20e-03         8  5.25e-04  3.73e-04  7.91e-04  cuDeviceGet
+                     0.00  1.98e-03         3  6.59e-04  5.23e-04  8.69e-04  cuDeviceGetCount
+                     0.00  1.84e-03         4  4.59e-04  3.75e-04  5.43e-04  cuDeviceGetUuid
+
+==89636== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+      21  97.523KB  64.000KB  256.00KB  2.000000MB    0.099584ms  Host To Device
+       8  128.00KB  64.000KB  448.00KB  1.000000MB    0.032288ms  Device To Host
+      44         -         -         -           -    6.105600ms  Gpu page fault groups
+Total CPU Page faults: 11

@@ -1,0 +1,35 @@
+==79015== NVPROF is profiling process 79015, command: ./lassen-executable/hotspot_11 128 2 2 ../../data/hotspot/temp_128 ../../data/hotspot/power_128 output.out
+==79015== Profiling application: ./lassen-executable/hotspot_11 128 2 2 ../../data/hotspot/temp_128 ../../data/hotspot/power_128 output.out
+WG size of kernel = 16 X 16
+alloc FilesavingTemp
+Number of allocated Data = 1
+in api range: 0x200060000000 0x200060010000
+alloc FilesavingPower
+Number of allocated Data = 2
+in api range: 0x200060010000 0x200060020000
+pyramidHeight: 2
+gridSize: [128, 128]
+border:[2, 2]
+blockGrid:[11, 11]
+targetBlock:[12, 12]
+Number of allocated Data = 3
+in api range: 0x200060020000 0x200060030000
+Start computing the transient temperature
+Ending simulation
+removing 0 1
+==79015== Profiling result:
+   Start  Duration            Grid Size      Block Size     Regs*    SSMem*    DSMem*           Device   Context    Stream        Unified Memory  Virtual Address  Name
+549.19ms         -                    -               -         -         -         -                -         -         -         PC 0x10003fcc   0x200060000000  [Unified Memory CPU page faults]
+560.43ms         -                    -               -         -         -         -                -         -         -         PC 0x10003fcc   0x200060010000  [Unified Memory CPU page faults]
+567.26ms  622.01us            (11 11 1)       (16 16 1)        40  3.0000KB        0B  Tesla V100-SXM2         1         7                     -                -  calculate_temp(int, float*, float*, float*, int, int, int, int, float, float, float, float, float, float) [419]
+567.26ms  364.00us                    -               -         -         -         -  Tesla V100-SXM2         -         -                   256   0x200060000000  [Unified Memory GPU page faults]
+567.51ms  4.2880us                    -               -         -         -         -  Tesla V100-SXM2         -         -           64.000000KB   0x200060000000  [Unified Memory Memcpy HtoD]
+567.63ms  178.62us                    -               -         -         -         -  Tesla V100-SXM2         -         -                   215   0x200060010000  [Unified Memory GPU page faults]
+567.76ms  4.3840us                    -               -         -         -         -  Tesla V100-SXM2         -         -           64.000000KB   0x200060010000  [Unified Memory Memcpy HtoD]
+567.81ms  67.712us                    -               -         -         -         -  Tesla V100-SXM2         -         -                    89   0x200060020000  [Unified Memory GPU page faults]
+568.53ms         -                    -               -         -         -         -                -         -         -         PC 0x10003da0   0x200060020000  [Unified Memory CPU page faults]
+568.56ms  3.1040us                    -               -         -         -         -  Tesla V100-SXM2         -         -           64.000000KB   0x200060020000  [Unified Memory Memcpy DtoH]
+
+Regs: Number of registers used per CUDA thread. This number includes registers used internally by the CUDA driver and/or tools and can be more than what the compiler shows.
+SSMem: Static shared memory allocated per CUDA block.
+DSMem: Dynamic shared memory allocated per CUDA block.

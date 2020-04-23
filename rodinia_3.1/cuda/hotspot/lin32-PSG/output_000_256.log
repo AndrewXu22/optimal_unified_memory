@@ -1,0 +1,24 @@
+==39101== NVPROF is profiling process 39101, command: ./hotspot_000 256 2 2 ../../../data/hotspot/temp_256 ../../../data/hotspot/power_256 output-adapt.out
+==39101== Profiling application: ./hotspot_000 256 2 2 ../../../data/hotspot/temp_256 ../../../data/hotspot/power_256 output-adapt.out
+==39101== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+                        %        ms                  ms        ms        ms
+ GPU activities:   100.00  0.862458         1  0.862458  0.862458  0.862458  calculate_temp(int, float*, float*, float*, int, int, int, int, float, float, float, float, float, float)
+      API calls:    98.46  245.5673         3  81.85578  0.012785  245.5402  cudaMallocManaged
+                     0.91  2.270869         2  1.135434  1.118390  1.152479  cuDeviceTotalMem
+                     0.40  0.990546       194  5.10e-03  1.09e-04  0.205686  cuDeviceGetAttribute
+                     0.17  0.432771         4  0.108192  2.88e-03  0.313969  cudaFree
+                     0.04  0.093189         2  0.046594  0.039909  0.053280  cuDeviceGetName
+                     0.02  0.043728         1  0.043728  0.043728  0.043728  cudaLaunchKernel
+                     0.00  7.37e-03         2  3.68e-03  2.21e-03  5.15e-03  cuDeviceGetPCIBusId
+                     0.00  1.36e-03         3  4.54e-04  1.33e-04  7.39e-04  cuDeviceGetCount
+                     0.00  1.35e-03         4  3.36e-04  1.69e-04  5.16e-04  cuDeviceGet
+                     0.00  3.96e-04         2  1.98e-04  1.52e-04  2.44e-04  cuDeviceGetUuid
+
+==39101== Unified Memory profiling result:
+Device "Tesla V100-PCIE-32GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+      23  22.261KB  4.0000KB  92.000KB  512.0000KB    0.082240ms  Host To Device
+       6  42.666KB  4.0000KB  124.00KB  256.0000KB    0.024736ms  Device To Host
+       5         -         -         -           -    0.848832ms  Gpu page fault groups
+Total CPU Page faults: 7

@@ -1,0 +1,25 @@
+==1999== NVPROF is profiling process 1999, command: ./hotspot_012 8192 2 2 ../../../data/hotspot/temp_8192 ../../../data/hotspot/power_8192 output-adapt.out
+==1999== Profiling application: ./hotspot_012 8192 2 2 ../../../data/hotspot/temp_8192 ../../../data/hotspot/power_8192 output-adapt.out
+==1999== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+                        %        ms                  ms        ms        ms
+ GPU activities:   100.00  2.65e+03         1  2.65e+03  2.65e+03  2.65e+03  calculate_temp(int, float*, float*, float*, int, int, int, int, float, float, float, float, float, float)
+      API calls:    79.85  270.6706         3  90.22353  0.040010  270.3940  cudaMallocManaged
+                    15.69  53.17530         4  13.29382  2.56e-03  19.98900  cudaFree
+                     3.45  11.71187         3  3.903956  3.29e-03  10.97774  cudaMemAdvise
+                     0.66  2.227538         2  1.113769  1.108666  1.118872  cuDeviceTotalMem
+                     0.29  0.968656       194  4.99e-03  1.07e-04  0.198981  cuDeviceGetAttribute
+                     0.04  0.146523         1  0.146523  0.146523  0.146523  cudaLaunchKernel
+                     0.03  0.084780         2  0.042390  0.039030  0.045750  cuDeviceGetName
+                     0.00  6.13e-03         2  3.07e-03  1.57e-03  4.56e-03  cuDeviceGetPCIBusId
+                     0.00  1.46e-03         4  3.64e-04  1.59e-04  7.57e-04  cuDeviceGet
+                     0.00  1.26e-03         3  4.18e-04  1.25e-04  7.09e-04  cuDeviceGetCount
+                     0.00  4.14e-04         2  2.07e-04  1.74e-04  2.40e-04  cuDeviceGetUuid
+
+==1999== Unified Memory profiling result:
+Device "Tesla V100-PCIE-32GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+    9336  56.157KB  4.0000KB  0.9961MB  512.0000MB   60.874688ms  Host To Device
+    1536  170.67KB  4.0000KB  0.9961MB  256.0000MB   22.905792ms  Device To Host
+   21103         -         -         -           -  2.6267e+03ms  Gpu page fault groups
+Total CPU Page faults: 2304

@@ -1,0 +1,41 @@
+==178119== NVPROF is profiling process 178119, command: ./lassen-executable/cfd_503 ../../data/cfd/fvcorr.domn.097K
+==178119== Profiling application: ./lassen-executable/cfd_503 ../../data/cfd/fvcorr.domn.097K
+==178119== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+                        %        ms                  ms        ms        ms
+ GPU activities:    74.75  289.0060      6000  0.048167  0.046207  0.333053  cuda_compute_flux(int, int*, float*, float*, float*)
+                    14.96  57.84732      6000  9.64e-03  9.09e-03  0.011072  cuda_time_step(int, int, float*, float*, float*, float*)
+                     5.61  21.67127      2000  0.010835  0.010528  0.400573  cuda_compute_step_factor(int, float*, float*, float*)
+                     4.66  18.00636      2000  9.00e-03  8.90e-03  0.014495  [CUDA memcpy DtoD]
+                     0.02  0.070303         6  0.011717  1.31e-03  0.063423  [CUDA memcpy HtoD]
+                     0.00  0.015872         3  5.29e-03  4.74e-03  5.66e-03  cuda_initialize_variables(int, float*)
+                     0.00  1.54e-03         1  1.54e-03  1.54e-03  1.54e-03  [CUDA memset]
+      API calls:    47.73  367.4656         5  73.49311  0.012829  367.4132  cudaMemcpyToSymbol
+                    30.15  232.1041     14003  0.016575  8.03e-03  0.117860  cudaLaunchKernel
+                    13.57  104.4934      2001  0.052220  0.016382  0.194511  cudaMemcpy
+                     2.80  21.58439         2  10.79219  0.012222  21.57217  cudaThreadSynchronize
+                     2.65  20.38173         2  10.19086  0.044025  20.33771  cudaMallocManaged
+                     0.91  7.011035     28003  2.50e-04  2.10e-04  0.089476  cudaGetLastError
+                     0.77  5.934908       384  0.015455  2.36e-04  1.108026  cuDeviceGetAttribute
+                     0.52  3.996636         4  0.999159  0.995165  1.003205  cuDeviceTotalMem
+                     0.32  2.482060         1  2.482060  2.482060  2.482060  cudaGetDeviceProperties
+                     0.26  2.039553         5  0.407910  7.99e-03  0.652698  cudaMalloc
+                     0.25  1.955828         7  0.279404  0.016985  0.424637  cudaFree
+                     0.06  0.425573         4  0.106393  0.104056  0.108074  cuDeviceGetName
+                     0.00  0.019474         1  0.019474  0.019474  0.019474  cudaMemset
+                     0.00  0.018659         2  9.33e-03  5.08e-03  0.013581  cudaMemAdvise
+                     0.00  0.012593         1  0.012593  0.012593  0.012593  cudaSetDevice
+                     0.00  0.010405         4  2.60e-03  1.25e-03  5.76e-03  cuDeviceGetPCIBusId
+                     0.00  3.12e-03         8  3.90e-04  3.08e-04  5.84e-04  cuDeviceGet
+                     0.00  1.61e-03         1  1.61e-03  1.61e-03  1.61e-03  cudaGetDevice
+                     0.00  1.60e-03         3  5.33e-04  4.53e-04  6.68e-04  cuDeviceGetCount
+
+==178119== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+       4         -         -         -           -    0.664288ms  Gpu page fault groups
+       2  192.00KB  128.00KB  256.00KB  384.0000KB           -  Remote mapping from device
+       3  1.5000MB  512.00KB  2.0000MB  4.500000MB           -  Remote mapping to device
+Total CPU Page faults: 4
+Total remote mappings from CPU: 3
+Total remote mappings to CPU: 2

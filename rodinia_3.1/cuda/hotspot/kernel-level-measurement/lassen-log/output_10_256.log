@@ -1,0 +1,27 @@
+==88075== NVPROF is profiling process 88075, command: ./lassen-executable/hotspot_10 256 2 2 ../../data/hotspot/temp_256 ../../data/hotspot/power_256 output-adapt.out
+==88075== Profiling application: ./lassen-executable/hotspot_10 256 2 2 ../../data/hotspot/temp_256 ../../data/hotspot/power_256 output-adapt.out
+==88075== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+                        %        ms                  ms        ms        ms
+ GPU activities:    98.30  0.582461         1  0.582461  0.582461  0.582461  calculate_temp(int, float*, float*, float*, int, int, int, int, float, float, float, float, float, float)
+                     1.70  0.010048         1  0.010048  0.010048  0.010048  [CUDA memcpy HtoD]
+      API calls:    95.85  270.8735         2  135.4367  0.012271  270.8612  cudaMallocManaged
+                     1.97  5.571464       388  0.014359  2.65e-04  0.579841  cuDeviceGetAttribute
+                     1.59  4.500690         4  1.125172  1.114565  1.142056  cuDeviceTotalMem
+                     0.19  0.533854         4  0.133463  1.83e-03  0.356807  cudaFree
+                     0.16  0.460521         4  0.115130  0.112465  0.116908  cuDeviceGetName
+                     0.16  0.452331         1  0.452331  0.452331  0.452331  cudaMalloc
+                     0.04  0.103053         1  0.103053  0.103053  0.103053  cudaLaunchKernel
+                     0.03  0.084300         1  0.084300  0.084300  0.084300  cudaMemcpy
+                     0.01  0.015323         4  3.83e-03  1.43e-03  7.82e-03  cuDeviceGetPCIBusId
+                     0.00  3.50e-03         8  4.38e-04  3.36e-04  6.44e-04  cuDeviceGet
+                     0.00  1.63e-03         3  5.42e-04  4.26e-04  7.04e-04  cuDeviceGetCount
+                     0.00  1.54e-03         4  3.84e-04  3.54e-04  4.03e-04  cuDeviceGetUuid
+
+==88075== Unified Memory profiling result:
+Device "Tesla V100-SXM2-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+       3  85.333KB  64.000KB  128.00KB  256.0000KB    0.015104ms  Host To Device
+       4  64.000KB  64.000KB  64.000KB  256.0000KB    0.012704ms  Device To Host
+       3         -         -         -           -    0.568544ms  Gpu page fault groups
+Total CPU Page faults: 6
