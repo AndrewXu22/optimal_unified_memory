@@ -1,14 +1,13 @@
 #!/bin/bash
 
-#This is the script normalizes metricss into test dataset, then use the offline trained model
-#to get the prediciton of unified memory advice, finally implement the new 
-#advice into the benchmark code
+#This is the script normalizes metrics into test dataset, then use the offline trained model
+#to get the prediciton of unified memory advice, and finally implement the new 
+#advice into the benchmark code.
 
 #1. Run script to format the collected csv logs into the test dataset
-# here need to put the python script into the directory
 
 #you can modify the output file name in the logs_format_to_dataset.py
-python logs_format_to_dataset.py
+python path/to/logs_format_to_dataset.py
 
 #2. Use weka to format the test set in arff and normalize the dataset
 java -cp ./weka.jar weka.core.converters.CSVLoader test.csv > test.arff
@@ -23,7 +22,7 @@ java -cp ./weka.jar weka.classifiers.trees.J48 \
 |tail -n+5  >> ./label.txt
 
 #4. Here to find the correct label for the benchmark and then update the benchmark code
-
+# this is the original script that is used to modify the benchmark with proper advice, this function can be adjusted in the XPlacer functions
 python find_advice_for_benchmark.py  #here should add a para to transfer the name of benchmark
 
 cd $HOME/prototype_llnl/benchmark

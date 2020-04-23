@@ -1,4 +1,15 @@
 #!/bin/bash
+# Online Runtime Data Collection:
+# 
+# TODO: need to run nvprof also to collect object level metrics.
+#       the code's memory allocations have to be instrumented to correlate to virtual addresses.
+# 
+#2.1 You can use the script to run nsight command line to collect the runtime
+#  logs from new benchmarks/applications (note that this script will automatically
+#    format, normalize, and save the new data into test.arff file (the test dataset))
+# 2.2 Details of normalization and label work follow the same role in workflow_1.sh
+# 2.3 In some cases, if it takes more than several minutes in the nsight to
+# fetch data, you can interrupt it
 
 #This is the script that can run benchmark with nsight to collect metrics,
 #due to some bechmarks may not finished with nsight in few minutes
