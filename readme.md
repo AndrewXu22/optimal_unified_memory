@@ -218,3 +218,24 @@ Key components: Kernel, input, array object, features ,label
 			< 8991, 3520, 9.27, 9982, 334, 42, 3, policy>   
 			< 8991, 3520, 9.27, 3434, 78, 83, 123, policy> 
 
+# Step 4. Generate the Model
+
+Use the sample data from cfd:
+* ./rodinia_3.1/cuda/cfd/labelledData.csv
+  CFD: 28 rows, 27 records,  3 kernels x 3 data sizes x 3 arrays = 27 , merged from 3*3 * 7*7*7 instances
+* ./rodinia_3.1/cuda/bfs/labelledData.csv , 
+  BFS: 25 rows, 24 records, 2 kernels x 3 data sizes x 4 arrays = 24
+* ./rodinia_3.1/cuda/gaussian/labelledData.csv
+  Gaussian: 448 rows, 447 records, 2 kernels x 75 data sizes x 3 arrays= 450 (It needs to subtracts 3 because only 1 kernel is profiled using input data matrix3. )
+
+Instructions:
+* Put the sample data into Weka, normalize all values, and remove the features that have same values (all 0, 1 or others)
+* The sample data has a total 499 (498?) instances, and I keep all features.
+* Dataset sample is here: 
+    https://drive.google.com/file/d/1K_JETvyH4pY8X7ua3CJastjcDmMpb6fy/view?usp=sharing
+* Normalized dataset:
+    https://drive.google.com/file/d/1mAvaauCsGCXEqgd-CuGnB-j23czTWKBu/view?usp=sharing
+    Note: When using it, please remove the first four features (InputData, Kernel, Data, DataId) in Weka.
+* Run with several tree models in Weka to test: e.g., Random Tree (66% train and 33% test): 
+    Note that the results are not very good since only sample data is used. You should get more accurate models with full datasets
+
