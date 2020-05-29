@@ -20,8 +20,9 @@ Kernel level feature vector: f(K1) = < f1, f2… fn,> (K1)
 
 Build all necessary code variants for the program
 Prerequisites: 
-* aws-volta: nvcc --version, V10.2.89
 * a GPU machine running Ubuntu 18.04 LTS
+* p3.2xlarge: AWS vm instance with Volta GPU 
+* Nvidia CUDA toolkit 10.2: nvcc --version, V10.2.89
 * python3 and python3-pandas  // apt-get install python3-pandas
 
 Build the cuda-adapter library 
