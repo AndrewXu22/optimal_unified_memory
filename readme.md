@@ -41,7 +41,7 @@ There is a script to run all the program variants
 
 You need to set the right path to the profiler in the script.
 
-You may need to use sudo to run the script since it uses nv-nsight-cu-cli to collect hardware counter information.
+You may need to use sudo to run the script since it uses nv-nsight-cu-cli to collect hardware counter information. Or you may get the error message like "The user does not have permission to access NVIDIA GPU Performance Counters".  
 
 Raw Data samples are stored within
 
