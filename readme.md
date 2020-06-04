@@ -184,8 +184,7 @@ Outputi Summary in csv:
 * ./rodinia_3.1/cuda/cfd/kernel-level-measurement/data-level-measurement/GPUTrace.csv
 
 Best-performed data group by kernel and inputdata:
-https://gitlab.com/DATA-PLACEMENT-LDRD/optimization_unified_memory/-/blob/master/rodinia_3.1/cuda/cfd/kernel-level-measurement/lassen-log/kernel-data-best.csv
-
+* ./rodinia_3.1/cuda/cfd/kernel-level-measurement/lassen-log/kernel-data-best.csv
 
 Applying Labels:
 Script:
