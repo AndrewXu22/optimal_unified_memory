@@ -275,5 +275,15 @@ java -classpath weka.jar weka.classifiers.meta.FilteredClassifier \
      -F weka.filters.unsupervised.attribute.StringToWordVector \
      -F weka.filters.unsupervised.attribute.Standardize" \
  -W weka.classifiers.trees.RandomForest -- -I 100 \
+ 
+
+# Examples in our case .........
+
+WEKA_FILE_PATH=/home/ubuntu/opt/weka-3-9-4/weka.jar
+ARFF_FILE_PATH=/home/ubuntu/optimal_unified_memory/data/performance_results_dataset/lassen_dataset.arff
+
+java -classpath $WEKA_FILE_PATH weka.classifiers.functions.Logistic -x  -t $ARFF_FILE_PATH  # use Logistic to train, then get the Logistic model, may need to mannually save the model
+
+java -classpath $WEKA_FILE_PATH weka.classifiers.trees.J48  -T $ARFF_FILE_PATH -l J48.model # use J48 model to test
 ```
 
