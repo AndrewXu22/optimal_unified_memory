@@ -9,6 +9,13 @@ Overview of major steps
 * Step 4. Generate the model
 * Step 5. Use the model to predict a new kernel’s object policies	
 
+# Prerequisites: 
+* a GPU machine running Ubuntu 18.04 LTS
+* p3.2xlarge: AWS vm instance with Volta GPU 
+* Nvidia CUDA toolkit 10.2: nvcc --version, V10.2.89
+* python3 and python3-pandas  // apt-get install python3-pandas
+* Weka : https://waikato.github.io/weka-wiki/downloading_weka/#linux_1
+
 # Step 1. Collect Baseline Metrics for Kernel and Object Level Features
 
 
@@ -19,11 +26,6 @@ Kernel level feature vector: f(K1) = < f1, f2… fn,> (K1)
 * using nsight run default, discrete memory API version of a program  (select this for now)
 
 Build all necessary code variants for the program
-Prerequisites: 
-* a GPU machine running Ubuntu 18.04 LTS
-* p3.2xlarge: AWS vm instance with Volta GPU 
-* Nvidia CUDA toolkit 10.2: nvcc --version, V10.2.89
-* python3 and python3-pandas  // apt-get install python3-pandas
 
 Build the cuda-adapter library 
 cd rodinia_3.1/cuda-adapter 
