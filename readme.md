@@ -254,8 +254,8 @@ Option 1: use the Weka software interface to do the training work
            e.g., 13:23:45 - trees.RandomForest, right click this one, then select "save model", you can choose the directory you want to save and name it. 
            Then the training model is saved.
 * Step (7). To use the trained model, in this same place, you can right click the blank spalce, then select "load model", you can load the model you just saved. 
-#           That's just how to do the test (prediction) work when you want to use the training model. 
 
+That's just how to do the test (prediction) work when you want to use the training model. 
 
 Options 2: use command line to do the training work
 here is an example about using models with multiple classifiers, please use your 
