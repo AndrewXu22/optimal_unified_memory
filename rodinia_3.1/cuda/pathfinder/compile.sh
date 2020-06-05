@@ -1,11 +1,10 @@
 #!/bin/bash
-for m in `seq 0 1`;
-do
+mkdir -p GPU-executable
+
 for i in `seq 0 6`;
 do
-echo $i $j 
-nvcc -O2 -Xptxas -v --gpu-architecture=compute_70 --gpu-code=compute_70 pathfinder_adapt.cu ../../cuda-adapter/adapter.o -o pathfinder_adapt -I/cm/extra/apps/CUDA.linux86-64/10.1.150_418.39/include -L/usr/local/cuda-10.1/lib -I../../cuda-adapter  -Dadvdata=$i -DmemLoc=$m 
-mv pathfinder_adapt ./lin32-lassen/pathfinder_$m$i
-done    
+echo $i
+nvcc pathfinder_adapt.cu ../../cuda-adapter/adapter.o -o pathfinder-adapt -I/usr/tce/packages/cuda/cuda-10.1.243/include -L/usr/local/cuda-10.1/lib -I../../cuda-adapter -Dadv1=$i
+mv pathfinder-adapt ./GPU-executable/pathfinder_$i
 done    
         
