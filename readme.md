@@ -232,7 +232,6 @@ Use the sample data from cfd:
 
 Instructions:
 * Put the sample data into Weka, normalize all values, and remove the features that have same values (all 0, 1 or others)
-* The sample data has a total 499 (498?) instances, and I keep all features.
 * Dataset sample is here: 
     https://raw.githubusercontent.com/AndrewXu22/optimal_unified_memory/master/example/3benchmarks.arff
 * Normalized dataset samples:
