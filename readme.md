@@ -232,10 +232,10 @@ Use the sample data from cfd:
 
 Instructions:
 * Put the sample data into Weka, normalize all values, and remove the features that have same values (all 0, 1 or others)
-* Dataset sample is here: 
-    https://raw.githubusercontent.com/AndrewXu22/optimal_unified_memory/master/example/3benchmarks.arff
-* Normalized dataset samples:
-    https://raw.githubusercontent.com/AndrewXu22/optimal_unified_memory/master/example/3benchmarks_normalized.arff Note: When using it, please remove the first four features (InputData, Kernel, Data, DataId) in Weka.
+* Dataset samples are here: 
+   https://github.com/AndrewXu22/optimal_unified_memory/blob/master/example/IBM_2688_13features.arff
+   https://github.com/AndrewXu22/optimal_unified_memory/blob/master/example/AWS_4878_13features.arff 
+   Note: When using it, please remove the first four features (InputData, Kernel, Data, DataId) in Weka.
 
 Another normalized dataset sample:
     ./data/performance_results_dataset/GPU_dataset.arff
