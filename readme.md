@@ -289,4 +289,18 @@ java -classpath $WEKA_FILE_PATH weka.classifiers.functions.Logistic -x  -t $ARFF
 
 java -classpath $WEKA_FILE_PATH weka.classifiers.trees.J48  -T $ARFF_FILE_PATH -l J48.model # use J48 model to test
 ```
+# Step 5. Use the model to predict a new kernel’s object policies
+
+Option 1: To use  Weka software interface for the prediction. 
+(i) Pre-processing: 
+Open the test data set file in csv file, replace the last column 'labelled' with "?". This serves as a placeholder to store the predicted classes. 
+Add the necessary headers and save as .arff file format.
+
+(ii) Prediction
+* Step (1). Open Weka, click "Explorer", go to the new Explorer interface
+* Step (2). Click "Classify", then load the saved model (.model format that is saved after training) 
+* Step (3). Select the Test options->Supplied test set option to choose the test data set file generated after pre-processing. In 'More options' check the 'Output Predictions" format to "plain text".
+* Step (4). Right click on the model and choose "Re-evaluate model on current test set".
+* Step (5). The 'Classifier Output' pane shows the predictions in 5-column format " inst#     actual  predicted error prediction". The 2nd column is the ground truth/Labelled data and 3rd column is the predicted class. The 4th column 'error' shows a "+" symbol if there are any mispredictions and the last column shows the probability distribution.
+* Step (6) Evaluate the number of correctly predicted instances among all instances. This gives the predicition efficiency of the trained model on a test data set. 
 
