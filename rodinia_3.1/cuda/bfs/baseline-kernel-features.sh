@@ -3,16 +3,18 @@
 
 ##### These are shell commands
 
+TOOL="/usr/local/cuda-10.2/bin/nv-nsight-cu-cli --section-folder /home/ubuntu/optimization_unified_memory/Nsight/sections"
 
+OUTPATH=kernel-level-measurement-2
 date
 ##### Launch parallel job using srun
-mkdir -p kernel-level-measurement
+mkdir -p $OUTPATH
 
 echo 'bfs'
 
-nv-nsight-cu-cli -s 3 -c 100  --csv ./lassen-executable/bfs_000000 ../../data/bfs/graph1MW_6.txt > ./kernel-level-measurement/nsight_bfs_graph1MW.6.log 
-nv-nsight-cu-cli -s 3 -c 100  --csv ./lassen-executable/bfs_000000 ../../data/bfs/graph4096.txt > ./kernel-level-measurement/nsight_bfs_graph4096.log 
-nv-nsight-cu-cli -s 3 -c 100  --csv ./lassen-executable/bfs_000000 ../../data/bfs/graph65536.txt > ./kernel-level-measurement/nsight_bfs_graph65536.log 
+$TOOL -s 3 -c 100  --csv ./GPU-executable/bfs_000000 ../../data/bfs/graph1MW_6.txt > ./$OUTPATH/nsight_bfs_graph1MW.6.log 
+$TOOL -s 3 -c 100  --csv ./GPU-executable/bfs_000000 ../../data/bfs/graph4096.txt  > ./$OUTPATH/nsight_bfs_graph4096.log 
+$TOOL -s 3 -c 100  --csv ./GPU-executable/bfs_000000 ../../data/bfs/graph65536.txt > ./$OUTPATH/nsight_bfs_graph65536.log 
 
 
 echo 'Done'
