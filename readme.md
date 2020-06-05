@@ -184,7 +184,7 @@ Outputi Summary in csv:
 * ./rodinia_3.1/cuda/cfd/kernel-level-measurement/data-level-measurement/GPUTrace.csv
 
 Best-performed data group by kernel and inputdata:
-* ./rodinia_3.1/cuda/cfd/kernel-level-measurement/lassen-log/kernel-data-best.csv
+* ./rodinia_3.1/cuda/cfd/kernel-level-measurement/GPU-log/kernel-data-best.csv
 
 Applying Labels:
 Script:
@@ -239,7 +239,7 @@ Instructions:
     https://drive.google.com/file/d/1mAvaauCsGCXEqgd-CuGnB-j23czTWKBu/view?usp=sharing Note: When using it, please remove the first four features (InputData, Kernel, Data, DataId) in Weka.
 
 Another normalized dataset sample:
-    ./data/performance_results_dataset/lassen_dataset.arff
+    ./data/performance_results_dataset/GPU_dataset.arff
     
 * Run with several tree models in Weka to test: e.g., Random Tree (66% train and 33% test): 
     Note that the results are not very good since only sample data is used. You should get more accurate models with full datasets
@@ -283,7 +283,7 @@ java -classpath weka.jar weka.classifiers.meta.FilteredClassifier \
 # Examples in our case .........
 
 WEKA_FILE_PATH=/home/ubuntu/opt/weka-3-9-4/weka.jar
-ARFF_FILE_PATH=/home/ubuntu/optimal_unified_memory/data/performance_results_dataset/lassen_dataset.arff
+ARFF_FILE_PATH=/home/ubuntu/optimal_unified_memory/data/performance_results_dataset/GPU_dataset.arff
 
 java -classpath $WEKA_FILE_PATH weka.classifiers.functions.Logistic -x  -t $ARFF_FILE_PATH  # use Logistic to train, then get the Logistic model, may need to mannually save the model
 
