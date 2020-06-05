@@ -234,9 +234,9 @@ Instructions:
 * Put the sample data into Weka, normalize all values, and remove the features that have same values (all 0, 1 or others)
 * The sample data has a total 499 (498?) instances, and I keep all features.
 * Dataset sample is here: 
-    https://drive.google.com/file/d/1K_JETvyH4pY8X7ua3CJastjcDmMpb6fy/view?usp=sharing
+    https://raw.githubusercontent.com/AndrewXu22/optimal_unified_memory/master/example/3benchmarks.arff
 * Normalized dataset samples:
-    https://drive.google.com/file/d/1mAvaauCsGCXEqgd-CuGnB-j23czTWKBu/view?usp=sharing Note: When using it, please remove the first four features (InputData, Kernel, Data, DataId) in Weka.
+    https://raw.githubusercontent.com/AndrewXu22/optimal_unified_memory/master/example/3benchmarks_normalized.arff Note: When using it, please remove the first four features (InputData, Kernel, Data, DataId) in Weka.
 
 Another normalized dataset sample:
     ./data/performance_results_dataset/GPU_dataset.arff
