@@ -208,7 +208,6 @@ def classifyAndTest():
     skf = StratifiedKFold(n_splits=crossVals.get(), shuffle = True)
     stratifiedAccuracy = 0.0
     
-    num_file = 1
     for train_indices, test_indices in skf.split(X, np.ravel(y)):
         clf_test = clf.fit(X[train_indices],np.ravel(y[train_indices]))
         y_pred = clf_test.predict(X[test_indices])
@@ -247,11 +246,12 @@ def saveFile():
     numColumns = len(currentDataFile.columns)
     X_input = currentDataFile.iloc[:,0:(numColumns - 1)]
     
-    onx = to_onnx(trainedModel, X_input, saveFileName.get())
-    
+    initial_type = [('float_input', FloatTensorType([None, 4]))]
+    onx = convert_sklearn(trainedModel, initial_types=initial_type)
+
     with open(saveFileName.get() + ".onnx", "wb") as f:
-        f.write(onx.SerializeToString())
-    
+        f.write(onx.SerializeToString())  
+
     return 
 
 def savePredictedModel():
