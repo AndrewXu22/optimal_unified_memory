@@ -28,8 +28,11 @@ Kernel level feature vector: f(K1) = < f1, f2… fn,> (K1)
 Build all necessary code variants for the program
 
 Build the cuda-adapter library 
+
+```
 cd rodinia_3.1/cuda-adapter 
-type make 
+make 
+```
 
 Build up to 7\*7\*7 = 343 binary variants for the benchmark, using a script 
 
