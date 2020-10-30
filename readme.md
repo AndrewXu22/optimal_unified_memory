@@ -58,6 +58,37 @@ three log files for three different data sizes of CFD, note that the data size p
 * nsight_cfd_193K.log  
 * nsight_cfd_missile0.2M.log
 
+Example content of nsight_cfd_097K.log
+```
+"ID","Process ID","Process Name","Host Name","Kernel Name","Kernel Time","Context","Stream","Section Name","Metric Name","Metric Unit","Metric Value"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","GPU Speed Of Light","Memory Frequency","cycle/second","768683274.02"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","GPU Speed Of Light","SOL FB","%","46.47"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","GPU Speed Of Light","Elapsed Cycles","cycle","10251"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","GPU Speed Of Light","SM Frequency","cycle/second","1138271055.75"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","GPU Speed Of Light","Memory [%]","%","46.47"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","GPU Speed Of Light","Duration","nsecond","8992"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","GPU Speed Of Light","SOL L2","%","13.61"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","GPU Speed Of Light","SM Active Cycles","cycle","8038.12"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","GPU Speed Of Light","SM [%]","%","22.48"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","GPU Speed Of Light","SOL TEX","%","11.33"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Launch Statistics","Block Size","","192"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Launch Statistics","Grid Size","","506"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Launch Statistics","Registers Per Thread","register/thread","20"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Launch Statistics","Shared Memory Configuration Size","byte","0"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Launch Statistics","Dynamic Shared Memory Per Block","byte/block","0"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Launch Statistics","Static Shared Memory Per Block","byte/block","0"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Launch Statistics","Threads","thread","97152"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Launch Statistics","Waves Per SM","","0.63"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Occupancy","Block Limit SM","block","32"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Occupancy","Block Limit Registers","block","14"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Occupancy","Block Limit Shared Mem","block","32"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Occupancy","Block Limit Warps","block","10"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Occupancy","Achieved Active Warps Per SM","warp","30.72"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Occupancy","Achieved Occupancy","%","48.00"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Occupancy","Theoretical Active Warps per SM","warp/cycle","60"
+"0","28439","cfd_000","127.0.0.1","cuda_compute_step_factor(int,float*,float*,float*)","2020-May-29 12:02:46","1","7","Occupancy","Theoretical Occupancy","%","93.75"
+```
+
 Post-process script:
 ./scripts/logs_format_to_dataset.py
 
