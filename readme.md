@@ -25,7 +25,7 @@ Kernel level feature vector: f(K1) = < f1, f2… fn,> (K1)
 * e.g.  <input size, cycles (8991), duration (3520, nsecond), mem % (9.27, %)>
 * using nsight run default, discrete memory API version of a program  (select this for now)
 
-Build all necessary code variants for the program
+Build all necessary code variants for the program. The variants of a kernel include a combination of choices of using discrete memory API, unified memory API, and CUDAMemAdvise(). 
 
 Build the cuda-adapter library 
 
