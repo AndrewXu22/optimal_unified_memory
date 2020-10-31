@@ -408,3 +408,12 @@ Add the necessary headers and save as .arff file format.
 * Step (5). The 'Classifier Output' pane shows the predictions in 5-column format " inst#     actual  predicted error prediction". The 2nd column is the ground truth/Labelled data and 3rd column is the predicted class. The 4th column 'error' shows a "+" symbol if there are any mispredictions and the last column shows the probability distribution.
 * Step (6) Evaluate the number of correctly predicted instances among all instances. This gives the predicition efficiency of the trained model on a test data set. 
 
+(iii) Evaluation of overheads
+* Step (1). Use a script to run the command to train and test via the Weka model. Here is one sample:
+```
+java -classpath CLASSPATH:weka.jar weka.classifiers.trees.RandomForest -x 5 -t ~/lassen_dataset.arff -T ~/lassen_dataset.arff
+```
+* Step (2). Add timestamp in the script to count the time for the above processing
+* Step (3). Get the execution time of specific benchmark in the IBM/Intel machine
+* Step (4). The test time from Weka is for the test of entire dataset. If this time is much larger than the execution time of one benchmark, use the test time divide by the number of instances in the dataset, we can get the test time for one specific instance, then calculate the percentage of overhead.
+
