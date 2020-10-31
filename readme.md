@@ -2,7 +2,10 @@ This repo contains the instructions, scripts, and codes needed to reproduce the
 experiments for our SC paper named:
 "XPlacer: A framework for Guiding Optimal Use of GPU Unified Memory"
 
-Overview of major steps
+# Overview of major steps
+
+The goal is to decide which memory placement policy is best for a given data object (array) with a CUDA kernel.  We prepare code variants of kernels using different memory placement policies, input data sizes and run them all.  Performance and profiling information are collected and made into a labelled training dataset. After that, machine learning models are built and used to guide memory placement of new programs. 
+
 * Step 1. Collect baseline metrics for both kernel-level and object level features
 * Step 2. Merge kernel and object level features
 * Step 3. Label the training data
