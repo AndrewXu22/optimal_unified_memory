@@ -256,6 +256,14 @@ Command:
 Output Summary in csv: 
 * ./rodinia_3.1/cuda/cfd/kernel-level-measurement/data-level-measurement/GPUTrace.csv
 
+
+Currently the kernel-level results (using minimum nvprof option) is collected at 
+./rodinia_3.1/cuda/cfd/data-level-measurement/dataset.csv
+
+We can sort the csv file to find the best execution time for each kernel.
+  
+cuda_compute_flux,0.2M,0,000,66.45,402.5463,6000,0.067091,0.058240,0.070912
+
 Best-performed data group by kernel and inputdata:
 * ./rodinia_3.1/cuda/cfd/kernel-level-measurement/GPU-log/kernel-data-best.csv
 
@@ -287,20 +295,10 @@ best execution of variants:
 * SC paper:  object variants: each object within a kernel, different placement  policies 
 * Once we find the best performing one of the 49 variants.: we use the labels for each data object . 
 
-Currently the kernel-level results (using minimum nvprof option) is collected at 
-./rodinia_3.1/cuda/cfd/data-level-measurement/dataset.csv
-
-We can sort the csv file to find the best execution time for each kernel.
-  
-cuda_compute_flux,0.2M,0,000,66.45,402.5463,6000,0.067091,0.058240,0.070912
-
 Labeled_Vector =  M_Vector + Labels
 
-Key components: Kernel, input, array object, features ,label
-```
-< 8991, 3520, 9.27, 9982, 334, 42, 3, policy>   
-< 8991, 3520, 9.27, 3434, 78, 83, 123, policy> 
-```
+Key components of the final vector
+* < Kernel, input, array object, list of features, policy_label>
 
 Script:
 * ./scripts/labeler.py
