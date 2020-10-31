@@ -142,11 +142,15 @@ cfd,097K,25,cuda_time_step,811314363.14,68.97,14232,1202376919.60,68.97,11808,22
 ```
 
 ## Now, collect data object level features: 
+Data object level features contain information about page faults on CPU and GPU, as well as data movement between host and device.
 
 Assuming two objects, we should have the following feature vectors: 
-Data object’s feature vector: f(A) = < f1, f2,...fm> (A) // e.g. <size, cpu pages faults (9982), gpu page faults(334), H2D data movement count(42, MB), D2H data movement count (3, MB) >
-How to collect object level metric (baseline experiment):  using nvprof run unified memory default version of a program
-Data object’s feature vector:  f(B) = < f1, f2,...fm> (B) // e.g. <cpu pages faults (3434), gpu page faults(78), H2D data movement count(83, MB), D2H data movement count (123, MB) >
+* Data object’s feature vector: f(A) = < f1, f2,...fm> (A) 
+  * e.g. <size, cpu pages faults (9982), gpu page faults(334), H2D data movement count(42, MB), D2H data movement count (3, MB) >
+* Data object’s feature vector:  f(B) = < f1, f2,...fm> (B) 
+  * e.g. <cpu pages faults (3434), gpu page faults(78), H2D data movement count(83, MB), D2H data movement count (123, MB) >
+
+How to collect object level metric (baseline experiment):  using nvprof to run the unified memory default version of a program. 
 
 Kernel-feature = <cycles (8991), duration (3520, nsecond), mem % (9.27, %)>
 
@@ -182,6 +186,7 @@ h_normals,002,0.2M,0x200060000000,0x200060aa7000,171,629,10944.0,0.0,0.0
 ```
 
 # Step 2. Merge kernel and object level features 
+This step essentially join two tables into a single table, by merging kernel level features with data object level features. 
 
 The Merge script: 
 * ./prototype/merger.py
@@ -202,12 +207,9 @@ A similar file for aws volta machine: mergedDataSet-ip-128-115-246-7.csv
 Command to run merger:
 * python3 $PATH_TO_PROJET/optimization_unified_memory/prototype/merger.py
 
-
 Merged_feature = Kernel_vector X Object_vector
 
-
-M (K1-A-B) = [ < f(K1) + f(A) > // feature vector length (n+m)
-                       <  f(k1) + f(B)> ]
+M (K1-A-B) = [ < f(K1) + f(A) > // feature vector length (n+m)  <  f(k1) + f(B)> ]
 
 Merged Feature vector for A:: <input size, cycles, duration, mem%, cpu page faults, gpu page faults, H2D data movement count, D2H data movement count, advise>, for example:
 ```
