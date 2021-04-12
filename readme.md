@@ -1,5 +1,5 @@
 This repo contains the instructions, scripts, and codes needed to reproduce the
-experiments for our SC paper named:
+experiments for our paper named:
 "XPlacer: A framework for Guiding Optimal Use of GPU Unified Memory"
 
 # Overview of major steps
