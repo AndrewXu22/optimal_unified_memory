@@ -17,7 +17,7 @@ The goal is to decide which memory placement policy is best for a given data obj
 * p3.2xlarge: AWS vm instance with Volta GPU 
 * Nvidia CUDA toolkit 10.2: nvcc --version, V10.2.89
 * python3 and python3-pandas  // apt-get install python3-pandas
-* Weka : https://waikato.github.io/weka-wiki/downloading_weka/#linux_1
+* Weka 3.8.5: https://waikato.github.io/weka-wiki/downloading_weka/#linux_1
 
 # Step 1. Collect Baseline Metrics for Kernel and Object Level Features
 
