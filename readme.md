@@ -338,8 +338,8 @@ Use the sample data from cfd:
 Instructions:
 * Put the sample data into Weka, normalize all values, and remove the features that have same values (all 0, 1 or others)
 * Dataset samples are here: 
-   https://github.com/AndrewXu22/optimal_unified_memory/blob/master/example/IBM_2688_13features.arff
-   https://github.com/AndrewXu22/optimal_unified_memory/blob/master/example/AWS_4878_13features.arff 
+   https://github.com/AndrewXu22/optimal_unified_memory/blob/master/data/data_IBM_%26_AWS_082020/AWS_2688data.csv.arff
+   https://github.com/AndrewXu22/optimal_unified_memory/blob/master/data/data_IBM_%26_AWS_082020/IBM_2688data.arff
    Note: When using it, please remove the first four features (InputData, Kernel, Data, DataId) in Weka.
 
 Another normalized dataset sample:
