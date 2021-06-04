@@ -324,6 +324,24 @@ InputData,Kernel,Data,DataID,Memory Frequency,SOL FB,Elapsed Cycles,SM Frequency
 097K,cuda_compute_step_factor,h_elements_surrounding_elements,1,787314688.5766665,45.43999999999999,10506.2,1164327823.9353333,45.43999999999999,9011.2,13.316666666666665,8074.781333333332,19.165999999999997,11.28133333333333,0.9826666666666666,0.7586666666666666,0.994,24.875999999999998,24.875999999999998,366295905221.2373,13.316666666666665,45.43999999999999,15.373999999999995,5.429999999999999,0.0,7.751333333333332,0.45799999999999996,74.42,1.0,0.25533333333333336,25.58,25.807999999999996,27.694666666666667,30.80133333333333,30.448666666666664,30.448666666666664,1987.178,635897.0,2010.4226666666666,643334.6,192.0,506.0,20.0,0.0,0.0,0.0,97152.0,0.6300000000000001,32.0,14.0,32.0,10.0,30.26466666666667,47.288,60.0,93.75,111,0x7fd20205ee00,0x7fd2021da600,1554432,10,17,1536.0,0.0,0.0,0
 097K,cuda_compute_step_factor,h_normals,2,787314688.5766665,45.43999999999999,10506.2,1164327823.9353333,45.43999999999999,9011.2,13.316666666666665,8074.781333333332,19.165999999999997,11.28133333333333,0.9826666666666666,0.7586666666666666,0.994,24.875999999999998,24.875999999999998,366295905221.2373,13.316666666666665,45.43999999999999,15.373999999999995,5.429999999999999,0.0,7.751333333333332,0.45799999999999996,74.42,1.0,0.25533333333333336,25.58,25.807999999999996,27.694666666666667,30.80133333333333,30.448666666666664,30.448666666666664,1987.178,635897.0,2010.4226666666666,643334.6,192.0,506.0,20.0,0.0,0.0,0.0,97152.0,0.6300000000000001,32.0,14.0,32.0,10.0,30.26466666666667,47.288,60.0,93.75,111,0x7fd202200000,0x7fd202672800,4663296,33,24,4556.0,0.0,0.0,5
 ```
+## Details of instances in the dataset
+Here is the breakdown for the 2688 instance and both IBM and Intel should have 2688 instances respectively:
+BFS: 200
+CFD: 270
+Hotspot 16
+Gaussian:2202
+
+Explanation here:
+Each instance represents the labelled data for a data object in a kernel of a benchmark with a specific input data.  Each benchmark might launch a kernel multiple times. Nsight tool re-runs each kernel to capture the profile data. We exploit this capability to increase the overall number of data instances. Here we collect the top 5 (for Gaussian) or 10 (for rest) kernel launch instances from the raw measurements.  The number of kernel+input+data combinations are the following:
+BFS: (2 kernels) x (4 data objects) x (3 input) = 24
+CFD: (4 kernels) x (3 data objects) x (3 input) = 36
+Hotspot: (1 kernels) x (2 data objects) x (8 input) = 16
+Gaussian: (2 kernels) x (3 data objects) x (75 input) = 450
+
+BFS should have 24x10 = 240 instances but we have only 200.  Some kernels were launched less than 10 times with certain input data. We have ((10+10) + (6 + 7) + (8 + 9)) x 4 = 200 instances
+CFD should have 36x10 = 360 instances but we have only 270.  One kernel, cuda_initialize_variables, is not profiled by Nsight. That leads to only 27 combinations and 270 instances as result.
+Hotspot should have 16x10 = 160 instances but we have only 16.  Following the default execution command the kernel is only launched once in each run. Therefore, there are only 16 overall instances that can be collected.
+Gaussian should have 450x5 = 2250 instances but we have only 2202.  Less kernel launches observed with smaller data size. Two of them lead to less than 10 kernel launches. One input, matrix3, has only one kernel launched.  2202 = 73x2x3x5 + 1x1x3x1 + 1x3x(1+2) = 2202
 
 # Step 4. Generate the Model
 
