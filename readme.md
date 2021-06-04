@@ -333,14 +333,22 @@ Gaussian:2202
 
 Explanation here:
 Each instance represents the labelled data for a data object in a kernel of a benchmark with a specific input data.  Each benchmark might launch a kernel multiple times. Nsight tool re-runs each kernel to capture the profile data. We exploit this capability to increase the overall number of data instances. Here we collect the top 5 (for Gaussian) or 10 (for rest) kernel launch instances from the raw measurements.  The number of kernel+input+data combinations are the following:
+
 BFS: (2 kernels) x (4 data objects) x (3 input) = 24
+
 CFD: (4 kernels) x (3 data objects) x (3 input) = 36
+
 Hotspot: (1 kernels) x (2 data objects) x (8 input) = 16
+
 Gaussian: (2 kernels) x (3 data objects) x (75 input) = 450
 
+
 BFS should have 24x10 = 240 instances but we have only 200.  Some kernels were launched less than 10 times with certain input data. We have ((10+10) + (6 + 7) + (8 + 9)) x 4 = 200 instances
+
 CFD should have 36x10 = 360 instances but we have only 270.  One kernel, cuda_initialize_variables, is not profiled by Nsight. That leads to only 27 combinations and 270 instances as result.
+
 Hotspot should have 16x10 = 160 instances but we have only 16.  Following the default execution command the kernel is only launched once in each run. Therefore, there are only 16 overall instances that can be collected.
+
 Gaussian should have 450x5 = 2250 instances but we have only 2202.  Less kernel launches observed with smaller data size. Two of them lead to less than 10 kernel launches. One input, matrix3, has only one kernel launched.  2202 = 73x2x3x5 + 1x1x3x1 + 1x3x(1+2) = 2202
 
 # Step 4. Generate the Model
