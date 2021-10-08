@@ -1,6 +1,6 @@
 This repo contains the instructions, scripts, and codes needed to reproduce the
-experiments for our paper named:
-"XPlacer: A framework for Guiding Optimal Use of GPU Unified Memory"
+experiments for our work named:
+"A framework for Guiding Optimal Use of GPU Unified Memory"
 
 # Overview of major steps
 
